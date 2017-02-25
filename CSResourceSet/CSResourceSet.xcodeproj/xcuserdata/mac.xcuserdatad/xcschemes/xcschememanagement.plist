@@ -4,6 +4,13 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CSNetworkRequestTool.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<true/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>CSResourceSet.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +20,16 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>0460BDAC1E616D6800990673</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0460BDCA1E61737200990673</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0460BDE41E61756E00990673</key>
 		<dict>
 			<key>primary</key>
 			<true/>
