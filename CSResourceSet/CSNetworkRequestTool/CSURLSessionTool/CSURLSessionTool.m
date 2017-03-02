@@ -22,48 +22,48 @@
 @implementation CSURLSessionTool
 
 //MARK: 缓存操作
-+ (CSCache *)getCache:(CSCacheType)cacheType url:(NSString *)url params:(NSDictionary *)params completionHandler:(completionHandler)completionHandlers
++ (void)getCache:(CSCacheType)cacheType url:(NSString *)url params:(NSDictionary *)params completionHandler:(completionHandler)completionHandlers
 {
     //缓存数据的文件名
     NSString *fileName = [NSString stringWithFormat:@"%@%@",url,[params URLQueryString]];//[self fileName:url params:params];
-    NSData *data = [CSCacheTool getCacheFileName:fileName];
-    //
-    CSCache *cache = [[CSCache alloc] init];
-    cache.fileName = fileName;
     
-    if (data.length) {
-        NSDictionary *dict = [self tryToParseData:data];
-        if (cacheType == CSCacheTypeReloadIgnoringLocalCacheData) {
-            //忽略缓存，重新请求
-            
-        } else if (cacheType == CSCacheTypeReturnCacheDataDontLoad) {
-            //有缓存就用缓存，没有缓存就不发请求，当做请求出错处理（用于离线模式）
-            
-        } else if (cacheType == CSCacheTypeReturnCacheDataElseLoad) {
-            //有缓存就用缓存，没有缓存就重新请求(用于数据不变时)
+    //
+    NSDictionary* data = [CSNetworkCache cacheJsonWithURL:fileName];
+    
+    
+    NSDictionary* errorInfo = @{}.mutableCopy;
+    [errorInfo setValue:@"没有缓存" forKey:@"error"];
+    NSError* error = (data)? nil : [[NSError alloc] initWithDomain:NSLocalizedDescriptionKey code:1175 userInfo:errorInfo];;
+    
+    
+    if (cacheType == CSCacheTypeReloadIgnoringLocalCacheData) {
+        //忽略缓存，重新请求
+        
+    } else if (cacheType == CSCacheTypeReturnCacheDataDontLoad) {
+        //有缓存就用缓存，没有缓存就不发请求，当做请求出错处理（用于离线模式）
+        
+    } else if (cacheType == CSCacheTypeReturnCacheDataElseLoad) {
+        //有缓存就用缓存，没有缓存就重新请求(用于数据不变时)
+        if (completionHandlers) {
+            completionHandlers(data,error);
+        }
+        
+    } else if (cacheType == CSCacheTypeReturnCacheDataThenLoad) {
+        //有缓存就先返回缓存，同步请求数据
+        if (completionHandlers) {
+            completionHandlers(data,error);
+            [self printObject:data isReq:NO];
+        }
+    } else if (cacheType == CSCacheTypeReturnCacheDataExpireThenLoad) {
+        //有缓存 判断是否过期了没有 没有就返回缓存
+        //判断是否过期
+        if (![CSNetworkCache isExpire:fileName]) {
             if (completionHandlers) {
-                completionHandlers(dict,nil);
+                completionHandlers(data,error);
             }
-            cache.result = YES;
             
-        } else if (cacheType == CSCacheTypeReturnCacheDataThenLoad) {
-            //有缓存就先返回缓存，同步请求数据
-            if (completionHandlers) {
-                completionHandlers(dict,nil);
-                [self printObject:dict isReq:NO];
-            }
-        } else if (cacheType == CSCacheTypeReturnCacheDataExpireThenLoad) {
-            //有缓存 判断是否过期了没有 没有就返回缓存
-            //判断是否过期
-            if (![CSCacheTool isExpire:fileName]) {
-                if (completionHandlers) {
-                    completionHandlers(dict,nil);
-                }
-                cache.result = YES;
-            }
         }
     }
-    return cache;
 }
 
 +(void)printObject:(NSDictionary*)dic isReq:(BOOL)isReq{
@@ -74,10 +74,9 @@
         NSString *json =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         if (isReq) {
             
-            NSLog(@"\n=====================\n请求参数\n==========================\n%@\n======================================================",json);
+            NSLog(@"\n🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍\n请求参数\n🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽\n%@\n🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼",json);
         }else {
-            
-            NSLog(@"\n=====================\n返回数据\n==========================\n%@\n=====================================================",json);
+            NSLog(@"\n🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍\n返回数据\n🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽\n%@\n🔼🔼🔼🔼🔼🔼🔼🔼🔼🔼",json);
         }
     }
 }
@@ -92,27 +91,6 @@
     }
     return mStr;
 }
-
-
-//MARK: 请求操作
-
-/*
- NSURLSession 的优势
- NSURLSession 支持 http2.0 协议
- 在处理下载任务的时候可以直接把数据下载到磁盘
- 支持后台下载|上传
- 同一个 session 发送多个请求，只需要建立一次连接（复用了TCP）
- 提供了全局的 session 并且可以统一配置，使用更加方便
- 下载的时候是多线程异步处理，效率更高
- 
- NSURLSessionTask 的子类
- NSURLSessionTask 是一个抽象类，如果要使用那么只能使用它的子类
- NSURLSessionTask 有两个子类
- NSURLSessionDataTask 有一个子类为 NSURLSessionUploadTask,用于处理上传请求的时候有优势
- NSURLSessionDataTask,可以用来处理一般的网络请求，如 GET | POST 请求等
- NSURLSessionDownloadTask,主要用于处理下载请求，有很大的优势
- */
-
 
 //MARK:data转字典
 + (id)tryToParseData:(id)responseData {
@@ -138,20 +116,51 @@
     }
 }
 
-+ (NSData*)dataFormatting:(NSData*)data{
-    return [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:nil];
-}
+//+ (NSData*)dataFormatting:(NSData*)data{
+//    return [NSJSONSerialization dataWithJSONObject:data options:NSJSONWritingPrettyPrinted error:nil];
+//}
 
+
+
+
+
+
+
+//MARK: 请求操作
 
 /*
- NSURLSessionDataTask 发送 GET 请求
+ NSURLSession 的优势
+ NSURLSession 支持 http2.0 协议
+ 在处理下载任务的时候可以直接把数据下载到磁盘
+ 支持后台下载|上传
+ 同一个 session 发送多个请求，只需要建立一次连接（复用了TCP）
+ 提供了全局的 session 并且可以统一配置，使用更加方便
+ 下载的时候是多线程异步处理，效率更高
  
- 发送 GET 请求的步骤非常简单，只需要两步就可以完成：
- 使用 NSURLSession 对象创建 Task
- 执行 Task
+ NSURLSessionTask 的子类
+ NSURLSessionTask 是一个抽象类，如果要使用那么只能使用它的子类
+ NSURLSessionTask 有两个子类
+ NSURLSessionDataTask 有一个子类为 NSURLSessionUploadTask,用于处理上传请求的时候有优势
+ NSURLSessionDataTask,可以用来处理一般的网络请求，如 GET | POST 请求等
+ NSURLSessionDownloadTask,主要用于处理下载请求，有很大的优势
  */
 
+
+
+
+
+//MARK:普通 GET 请求
+
+
 + (NSURLSessionDataTask *)getRequestWithURL:(NSString*)url Parameters:(NSDictionary*)parameters completionHandler:(completionHandler)completionHandler{
+    
+    /*
+     NSURLSessionDataTask 发送 GET 请求
+     
+     发送 GET 请求的步骤非常简单，只需要两步就可以完成：
+     使用 NSURLSession 对象创建 Task
+     执行 Task
+     */
     
     //NSParameterAssert(url);
     NSAssert((url), @"链接为空或者错误❌❌❌");
@@ -187,16 +196,16 @@
 }
 
 
-
-/*
- NSURLSessionDataTask 发送 POST 请求
- 
- 发送 POST 请求的步骤与发送 GET 请求一样：
- 使用 NSURLSession 对象创建 Task
- 执行 Task
- */
-
+//MARK: 普通 POST 请求
 + (NSURLSessionDataTask *)postRequestWithURL:(NSString*)url Parameters:(NSDictionary*)parameters completionHandler:(completionHandler)completionHandlers{
+    
+    /*
+     NSURLSessionDataTask 发送 POST 请求
+     
+     发送 POST 请求的步骤与发送 GET 请求一样：
+     使用 NSURLSession 对象创建 Task
+     执行 Task
+     */
     
     //NSParameterAssert(url);
     NSAssert((url), @"链接为空或者错误❌❌❌");
@@ -214,14 +223,11 @@
     //创建会话对象
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:URL completionHandler:^(NSData * _Nullable completionHandler, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //LCNSLog(@"请求成功:\n%@:\n\n%@",completionHandler,response.URL);
         
         //解析服务器返回的数据
         if (completionHandlers) {
             completionHandlers([self tryToParseData:completionHandler],error);
         }
-        
-        //NSLog(@"%@", [[NSString alloc] initWithData:completionHandler encoding:NSUTF8StringEncoding]);
         //默认在子线程中解析数据
         //LCNSLog(@"%@", [NSThread currentThread]);
     }];
@@ -247,31 +253,28 @@
     requestM.HTTPBody = [[parameters URLQueryString] dataUsingEncoding:NSUTF8StringEncoding];
     
     //缓存数据的文件名 data
-    CSCache *cache = [self getCache:cacheType url:url params:parameters completionHandler:completionHandlers];
-    NSString * fileName = cache.fileName;
-    //if (cache.result) return nil;
-    
-    
+    NSString *fileName = [NSString stringWithFormat:@"%@%@",url,[parameters URLQueryString]];
+    [self getCache:cacheType url:url params:parameters completionHandler:completionHandlers];
     
     //创建会话对象
     NSURLSession *session = [NSURLSession sharedSession];
-    
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:URL completionHandler:^(NSData * _Nullable completionHandler, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         if (!error) {
+            
+            //解析服务器返回的数据
+            if (completionHandlers) {
+                completionHandlers([self tryToParseData:completionHandler],error);
+            }
+            
             //缓存数据
-            NSData *data = [self dataFormatting:completionHandler];
-            
-            NSLog(@"请求成功:\n%@:\n\n",data);
-            
-            [CSCacheTool cacheForData:data fileName:fileName];
-           
-            
+            [CSNetworkCache save_asyncJsonResponseToCacheFile:[self tryToParseData:completionHandler] andURL:fileName completed:^(BOOL result) {
+                NSLog(@"保存成功");
+            }];
+
         }else{
             NSLog(@"请求失败:%@:\n\n%@",response,error);
         }
-        
-        //NSLog(@"%@", [[NSString alloc] initWithData:completionHandler encoding:NSUTF8StringEncoding]);
         //默认在子线程中解析数据
         NSLog(@"%@", [NSThread currentThread]);
     }];
