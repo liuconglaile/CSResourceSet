@@ -19,11 +19,13 @@
 		0460BDF21E61756E00990673 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0460BDF01E61756E00990673 /* Main.storyboard */; };
 		0460BDF41E61756E00990673 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0460BDF31E61756E00990673 /* Assets.xcassets */; };
 		0460BDF71E61756E00990673 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0460BDF51E61756E00990673 /* LaunchScreen.storyboard */; };
-		0460BE071E61757B00990673 /* CSCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0460BDFF1E61757B00990673 /* CSCacheManager.m */; };
-		0460BE081E61757B00990673 /* NSFileManager+Time.m in Sources */ = {isa = PBXBuildFile; fileRef = 0460BE011E61757B00990673 /* NSFileManager+Time.m */; };
-		0460BE091E61757B00990673 /* CSURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0460BE031E61757B00990673 /* CSURLRequest.m */; };
-		0460BE0A1E61757B00990673 /* CSURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0460BE061E61757B00990673 /* CSURLSessionManager.m */; };
-		0460BE0D1E61842F00990673 /* File.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 0460BE0C1E61842F00990673 /* File.rtf */; };
+		0484A2A81E67C11600D2D731 /* CSFileHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0484A2A51E67C11600D2D731 /* CSFileHandle.m */; };
+		0484A2A91E67C11600D2D731 /* CSNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0484A2A71E67C11600D2D731 /* CSNetworkCache.m */; };
+		0484A2AD1E67CC9400D2D731 /* NSArray+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0484A2AC1E67CC9400D2D731 /* NSArray+Unicode.m */; };
+		0484A2B01E67CCCB00D2D731 /* NSDictionary+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0484A2AF1E67CCCB00D2D731 /* NSDictionary+Unicode.m */; };
+		0484A2B31E67CD5000D2D731 /* NSSet+Unicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0484A2B21E67CD5000D2D731 /* NSSet+Unicode.m */; };
+		04D2C3781E65508F00EA6FCF /* CSURLSessionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D2C3731E65508F00EA6FCF /* CSURLSessionTool.m */; };
+		04D2C3791E65508F00EA6FCF /* NSDictionary+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D2C3761E65508F00EA6FCF /* NSDictionary+URL.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,16 +49,21 @@
 		0460BDF31E61756E00990673 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0460BDF61E61756E00990673 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0460BDF81E61756E00990673 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0460BDFE1E61757B00990673 /* CSCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCacheManager.h; sourceTree = "<group>"; };
-		0460BDFF1E61757B00990673 /* CSCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCacheManager.m; sourceTree = "<group>"; };
-		0460BE001E61757B00990673 /* NSFileManager+Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Time.h"; sourceTree = "<group>"; };
-		0460BE011E61757B00990673 /* NSFileManager+Time.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Time.m"; sourceTree = "<group>"; };
-		0460BE021E61757B00990673 /* CSURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSURLRequest.h; sourceTree = "<group>"; };
-		0460BE031E61757B00990673 /* CSURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSURLRequest.m; sourceTree = "<group>"; };
-		0460BE041E61757B00990673 /* CSURLSessionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSURLSessionDelegate.h; sourceTree = "<group>"; };
-		0460BE051E61757B00990673 /* CSURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSURLSessionManager.h; sourceTree = "<group>"; };
-		0460BE061E61757B00990673 /* CSURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSURLSessionManager.m; sourceTree = "<group>"; };
-		0460BE0C1E61842F00990673 /* File.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = File.rtf; sourceTree = "<group>"; };
+		0484A2A41E67C11600D2D731 /* CSFileHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSFileHandle.h; sourceTree = "<group>"; };
+		0484A2A51E67C11600D2D731 /* CSFileHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSFileHandle.m; sourceTree = "<group>"; };
+		0484A2A61E67C11600D2D731 /* CSNetworkCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNetworkCache.h; sourceTree = "<group>"; };
+		0484A2A71E67C11600D2D731 /* CSNetworkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSNetworkCache.m; sourceTree = "<group>"; };
+		0484A2AB1E67CC9400D2D731 /* NSArray+Unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Unicode.h"; sourceTree = "<group>"; };
+		0484A2AC1E67CC9400D2D731 /* NSArray+Unicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Unicode.m"; sourceTree = "<group>"; };
+		0484A2AE1E67CCCB00D2D731 /* NSDictionary+Unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Unicode.h"; sourceTree = "<group>"; };
+		0484A2AF1E67CCCB00D2D731 /* NSDictionary+Unicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Unicode.m"; sourceTree = "<group>"; };
+		0484A2B11E67CD5000D2D731 /* NSSet+Unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+Unicode.h"; sourceTree = "<group>"; };
+		0484A2B21E67CD5000D2D731 /* NSSet+Unicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+Unicode.m"; sourceTree = "<group>"; };
+		04D2C3721E65508F00EA6FCF /* CSURLSessionTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSURLSessionTool.h; sourceTree = "<group>"; };
+		04D2C3731E65508F00EA6FCF /* CSURLSessionTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSURLSessionTool.m; sourceTree = "<group>"; };
+		04D2C3741E65508F00EA6FCF /* CSURLSessionToolDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSURLSessionToolDelegate.h; sourceTree = "<group>"; };
+		04D2C3751E65508F00EA6FCF /* NSDictionary+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+URL.h"; sourceTree = "<group>"; };
+		04D2C3761E65508F00EA6FCF /* NSDictionary+URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+URL.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +129,7 @@
 		0460BDE61E61756E00990673 /* CSNetworkRequestTool */ = {
 			isa = PBXGroup;
 			children = (
-				0460BDFC1E61757B00990673 /* NetworkRequestTool */,
+				04D2C36E1E65508E00EA6FCF /* CSURLSessionTool */,
 				0460BDEA1E61756E00990673 /* AppDelegate.h */,
 				0460BDEB1E61756E00990673 /* AppDelegate.m */,
 				0460BDED1E61756E00990673 /* ViewController.h */,
@@ -144,37 +151,42 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0460BDFC1E61757B00990673 /* NetworkRequestTool */ = {
+		0484A2AA1E67CC6E00D2D731 /* Unicode */ = {
 			isa = PBXGroup;
 			children = (
-				0460BE0B1E6183D000990673 /* Explain */,
-				0460BDFD1E61757B00990673 /* CSCacheManager */,
-				0460BE021E61757B00990673 /* CSURLRequest.h */,
-				0460BE031E61757B00990673 /* CSURLRequest.m */,
-				0460BE041E61757B00990673 /* CSURLSessionDelegate.h */,
-				0460BE051E61757B00990673 /* CSURLSessionManager.h */,
-				0460BE061E61757B00990673 /* CSURLSessionManager.m */,
+				0484A2AB1E67CC9400D2D731 /* NSArray+Unicode.h */,
+				0484A2AC1E67CC9400D2D731 /* NSArray+Unicode.m */,
+				0484A2AE1E67CCCB00D2D731 /* NSDictionary+Unicode.h */,
+				0484A2AF1E67CCCB00D2D731 /* NSDictionary+Unicode.m */,
+				0484A2B11E67CD5000D2D731 /* NSSet+Unicode.h */,
+				0484A2B21E67CD5000D2D731 /* NSSet+Unicode.m */,
 			);
-			path = NetworkRequestTool;
+			path = Unicode;
 			sourceTree = "<group>";
 		};
-		0460BDFD1E61757B00990673 /* CSCacheManager */ = {
+		04D2C36E1E65508E00EA6FCF /* CSURLSessionTool */ = {
 			isa = PBXGroup;
 			children = (
-				0460BDFE1E61757B00990673 /* CSCacheManager.h */,
-				0460BDFF1E61757B00990673 /* CSCacheManager.m */,
-				0460BE001E61757B00990673 /* NSFileManager+Time.h */,
-				0460BE011E61757B00990673 /* NSFileManager+Time.m */,
+				0484A2AA1E67CC6E00D2D731 /* Unicode */,
+				04D2C36F1E65508E00EA6FCF /* CacheTool */,
+				04D2C3721E65508F00EA6FCF /* CSURLSessionTool.h */,
+				04D2C3731E65508F00EA6FCF /* CSURLSessionTool.m */,
+				04D2C3741E65508F00EA6FCF /* CSURLSessionToolDelegate.h */,
+				04D2C3751E65508F00EA6FCF /* NSDictionary+URL.h */,
+				04D2C3761E65508F00EA6FCF /* NSDictionary+URL.m */,
 			);
-			path = CSCacheManager;
+			path = CSURLSessionTool;
 			sourceTree = "<group>";
 		};
-		0460BE0B1E6183D000990673 /* Explain */ = {
+		04D2C36F1E65508E00EA6FCF /* CacheTool */ = {
 			isa = PBXGroup;
 			children = (
-				0460BE0C1E61842F00990673 /* File.rtf */,
+				0484A2A41E67C11600D2D731 /* CSFileHandle.h */,
+				0484A2A51E67C11600D2D731 /* CSFileHandle.m */,
+				0484A2A61E67C11600D2D731 /* CSNetworkCache.h */,
+				0484A2A71E67C11600D2D731 /* CSNetworkCache.m */,
 			);
-			path = Explain;
+			path = CacheTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,7 +283,6 @@
 			files = (
 				0460BDF71E61756E00990673 /* LaunchScreen.storyboard in Resources */,
 				0460BDF41E61756E00990673 /* Assets.xcassets in Resources */,
-				0460BE0D1E61842F00990673 /* File.rtf in Resources */,
 				0460BDF21E61756E00990673 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,13 +304,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0460BE071E61757B00990673 /* CSCacheManager.m in Sources */,
+				0484A2A81E67C11600D2D731 /* CSFileHandle.m in Sources */,
 				0460BDEF1E61756E00990673 /* ViewController.m in Sources */,
+				0484A2B01E67CCCB00D2D731 /* NSDictionary+Unicode.m in Sources */,
+				04D2C3791E65508F00EA6FCF /* NSDictionary+URL.m in Sources */,
 				0460BDEC1E61756E00990673 /* AppDelegate.m in Sources */,
 				0460BDE91E61756E00990673 /* main.m in Sources */,
-				0460BE0A1E61757B00990673 /* CSURLSessionManager.m in Sources */,
-				0460BE081E61757B00990673 /* NSFileManager+Time.m in Sources */,
-				0460BE091E61757B00990673 /* CSURLRequest.m in Sources */,
+				04D2C3781E65508F00EA6FCF /* CSURLSessionTool.m in Sources */,
+				0484A2AD1E67CC9400D2D731 /* NSArray+Unicode.m in Sources */,
+				0484A2A91E67C11600D2D731 /* CSNetworkCache.m in Sources */,
+				0484A2B31E67CD5000D2D731 /* NSSet+Unicode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +510,7 @@
 				0460BDC61E616D6800990673 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0460BDF91E61756E00990673 /* Build configuration list for PBXNativeTarget "CSNetworkRequestTool" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +519,7 @@
 				0460BDFB1E61756E00990673 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
