@@ -23,7 +23,7 @@
     [CSURLSessionTool postRequestWithURL:url Parameters:@{} CacheType:CSCacheTypeReturnCacheDataThenLoad completionHandler:^(id data, NSError *error) {
         
         if (!error) {
-            NSLog(@"请求成功!返回数据:%@",data);
+            //NSLog(@"请求成功!返回数据:%@",data);
         }else{
             NSLog(@"请求失败,原因:%@",error);
         }
